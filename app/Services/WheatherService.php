@@ -7,17 +7,18 @@ use Illuminate\Support\Facades\Http;
 class WheatherService
 {
 
-    private string $wheatherServiceUrl = 'https://api.openweathermap.org/data/2.5/weather?';
-
     public function getWeatherSituationByUserData()
     {
-        $userLocation = auth()->user()->user_location ?? 'London';
+        $userLocation = auth()->user()->user_location ?? \config('app.default_user_location');
 
         $appendedParameters = http_build_query([
             'q' => $userLocation,
             'APPID' => \config('app.weather_api_key')
         ]);
-        $getWeatherServiceUserLocationUrl = $this->wheatherServiceUrl.$appendedParameters;
+
+        $wheatherServiceUrl = \config('app.weather_api_url');
+
+        $getWeatherServiceUserLocationUrl = $wheatherServiceUrl.$appendedParameters;
 
         return Cache::get('user_wheather_data', static function () use ($getWeatherServiceUserLocationUrl) {
             return Http::get($getWeatherServiceUserLocationUrl)->object();

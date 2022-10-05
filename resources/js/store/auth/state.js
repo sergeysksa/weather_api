@@ -1,5 +1,8 @@
 export default () => ({
     loggedIn: false,
     user: {},
-    loginErrorMessage: ''
+    loginErrorMessage: '',
+    registrationErrorMessage: '',
+    loginFormShow: false,
+    registerShow: false,
 })

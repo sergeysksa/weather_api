@@ -126,6 +126,8 @@ return [
     'cipher' => 'AES-256-CBC',
 
     'weather_api_key' => env('WEATHER_API_KEY'),
+    'weather_api_url' => env('WEATHER_API_URL'),
+    'default_user_location' => env('DEFAULT_USER_LOCATION', 'London'),
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver

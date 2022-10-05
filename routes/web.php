@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::post('login', [App\Http\Controllers\Auth\AuthController::class, 'login']);
+Route::post('register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
 Route::get('/login-with-remote-provider', 'App\Http\Controllers\Auth\AuthController@loginWithProvider')
     ->name('login_with_remote_provider');
 Route::get('/callback', 'App\Http\Controllers\Auth\AuthController@providerCallback');
@@ -24,14 +25,7 @@ Route::post('/tokens/create', static function (Request $request) {
     return ['token' => $token->plainTextToken];
 });
 
-Route::get('auth-check', static function(Request $request){
-    if(auth()->user()->id){
-        return response()->json([
-            'user' => auth()->user(),
-            'token'=>auth()->user()->createToken('wheather')->plainTextToken
-        ]);
-    }
-});
+Route::get('auth-check', [App\Http\Controllers\Auth\AuthController::class, 'authCheck']);
 
 Route::get('/{any?}', static function (){
     return view('layouts.app');

@@ -9,10 +9,16 @@ use App\Services\WheatherService;
 
 class DashboardController
 {
+
+    public function __construct(
+        private UserRepository $userRepository,
+        private WheatherService $wheatherService
+    ){}
+
     public function index(): array
     {
-        $userData = (new UserRepository())->getAuthUserData();
-        $userWheatherData = (new WheatherService())->getWeatherSituationByUserData()->main;
+        $userData = $this->userRepository->getAuthUserData();
+        $userWheatherData = $this->wheatherService->getWeatherSituationByUserData()->main;
 
         return [
             'user'  => new UserResource( $userData ),

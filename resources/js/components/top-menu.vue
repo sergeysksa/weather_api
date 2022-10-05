@@ -20,13 +20,25 @@
                 class="nav-item"
             >
                 <button
-                    @click="loginShow = !loginShow"
+                    @click="loginFormShowChangeState"
                     class="btn btn-link">Login
+                </button>
+            </li>
+            <li
+                v-if="!isLoggedIn"
+                class="nav-item"
+            >
+                <button
+                    @click="registrationFormShowChangeState"
+                    class="btn btn-link">Registration
                 </button>
             </li>
         </ul>
         <Transition>
             <login-form v-if="loginShow" />
+        </Transition>
+        <Transition>
+            <registration-form v-if="registerShow" />
         </Transition>
     </nav>
 </template>
@@ -38,16 +50,19 @@ import { useStore } from 'vuex'
 import menu from '@/menu'
 import authMenu from '@/authMenu'
 import LoginForm from "@/components/auth/LoginForm";
+import RegistrationForm from "@/components/auth/RegistrationForm";
 
 const store = useStore()
 
 const route = useRoute()
 
-let loginShow = ref(false)
+let loginShow = computed(() => store.state.auth.loginFormShow)
+let registerShow = computed(() => store.state.auth.registerShow)
 const isCurrentRouteActive = (name) => route.name === name
 const isLoggedIn = computed(() => store.state.auth.loggedIn)
 const componentMenu = computed( () => store.state.auth.loggedIn ? [...menu, ...authMenu] : menu)
-
+const loginFormShowChangeState = () => store.commit('auth/setLoginFormShow', !loginShow.value)
+const registrationFormShowChangeState = () => store.commit('auth/setRegistrationFormShow', !registerShow.value)
 </script>
 
 <style scoped lang="scss">
@@ -60,7 +75,8 @@ const componentMenu = computed( () => store.state.auth.loggedIn ? [...menu, ...a
 .v-leave-to {
     opacity: 0;
 }
-.login-form{
+.login-form,
+.register-form{
     border: 1px solid #ccc;
     border-radius: 5px;
     top: 4rem;

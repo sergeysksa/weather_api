@@ -42,18 +42,6 @@ class DashboardTest extends TestCase
         ]);
     }
 
-
-    public function test_get_data_from_wheather_service(): void
-    {
-
-        $user = User::query()->first();
-
-        $data = $this
-            ->actingAs($user)
-            ->get(route('user-wheather'));
-        $data->assertStatus(200);
-    }
-
     public function test_login_user(): void
     {
 
