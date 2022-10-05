@@ -14,13 +14,15 @@
                     v-text="menuItem.name"
                 />
             </li>
+
             <li
+                v-if="!isLoggedIn"
                 class="nav-item"
             >
                 <button
-                    v-if="!isLoggedIn"
                     @click="loginShow = !loginShow"
-                    class="btn btn-link">Login</button>
+                    class="btn btn-link">Login
+                </button>
             </li>
         </ul>
         <Transition>
@@ -44,7 +46,7 @@ const route = useRoute()
 let loginShow = ref(false)
 const isCurrentRouteActive = (name) => route.name === name
 const isLoggedIn = computed(() => store.state.auth.loggedIn)
-const componentMenu = computed( () => isLoggedIn ? [...menu, authMenu] : menu)
+const componentMenu = computed( () => store.state.auth.loggedIn ? [...menu, ...authMenu] : menu)
 
 </script>
 

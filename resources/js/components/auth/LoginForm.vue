@@ -26,6 +26,9 @@
                 placeholder="password"
             >
         </div>
+        <div class="my-3 form-group">
+            <a href="login-with-remote-provider">Login with Google</a>
+        </div>
         <button
             class="my-3 btn btn-primary"
             @click="login"
