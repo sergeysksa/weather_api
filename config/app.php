@@ -125,6 +125,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'weather_api_key' => env('WEATHER_API_KEY'),
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver

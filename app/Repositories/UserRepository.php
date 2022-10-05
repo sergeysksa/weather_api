@@ -6,7 +6,7 @@ use App\Models\User;
 
 class UserRepository
 {
-    public function updateOrCreateWithSocialProvider($user, $provider, $location)
+    public function updateOrCreateWithSocialProvider($user, $provider, $location): User
     {
         return User::updateOrCreate([
             'provider_id'       => $user->id,
@@ -21,8 +21,8 @@ class UserRepository
         ]);
     }
 
-    public function findByGoogleId($id)
+    public function getAuthUserData(): User
     {
-        return User::where('google_id', $id)->first();
+        return User::find( auth()->user()->id );
     }
 }

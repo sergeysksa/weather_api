@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:sanctum')->group(function () {
-//
-//});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('get-auth-user-data', '\App\Http\Controllers\API\DashboardController@index');
+    Route::get('user-wheather', '\App\Services\WheatherService@getWeatherSituationByUserData');
+});
