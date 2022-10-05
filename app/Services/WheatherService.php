@@ -15,7 +15,7 @@ class WheatherService
 
         $appendedParameters = http_build_query([
             'q' => $userLocation,
-            'APPID' => config('app.weather_api_key')
+            'APPID' => \config('app.weather_api_key')
         ]);
         $getWeatherServiceUserLocationUrl = $this->wheatherServiceUrl.$appendedParameters;
 

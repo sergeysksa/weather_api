@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('get-auth-user-data', '\App\Http\Controllers\API\DashboardController@index');
-    Route::get('user-wheather', '\App\Services\WheatherService@getWeatherSituationByUserData');
+    Route::get('get-auth-user-data', '\App\Http\Controllers\API\DashboardController@index')
+        ->name('get-auth-user-data');
+    Route::get('user-wheather', '\App\Services\WheatherService@getWeatherSituationByUserData')
+        ->name('user-wheather');
 });

@@ -15,6 +15,7 @@ class UserRepository
             'email'             => $user->email,
             'provider'          => $provider,
             'provider_id'       => $user->id,
+            'status'            => 'active',
             'avatar'            => $user->avatar ?? '',
             'avatar_original'   => $user->avatar_original ?? '',
             'user_location'     => $location
