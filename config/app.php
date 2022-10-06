@@ -128,6 +128,7 @@ return [
     'weather_api_key' => env('WEATHER_API_KEY'),
     'weather_api_url' => env('WEATHER_API_URL'),
     'default_user_location' => env('DEFAULT_USER_LOCATION', 'London'),
+    'default_demo_ip' => env('DEFAULT_DEMO_IP', '172.67.71.253'),  // from 'fairinternetreport.com'
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver

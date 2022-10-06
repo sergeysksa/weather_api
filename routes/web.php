@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +15,11 @@ use Illuminate\Http\Request;
 
 Route::post('login', [App\Http\Controllers\Auth\AuthController::class, 'login']);
 Route::post('register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
-Route::get('/login-with-remote-provider', 'App\Http\Controllers\Auth\AuthController@loginWithProvider')
+Route::get('/login-with-remote-provider', [App\Http\Controllers\Auth\AuthController::class, 'loginWithProvider'])
     ->name('login_with_remote_provider');
-Route::get('/callback', 'App\Http\Controllers\Auth\AuthController@providerCallback');
+Route::get('/callback', [App\Http\Controllers\Auth\AuthController::class, 'providerCallback']);
 
-Route::post('/tokens/create', static function (Request $request) {
-    $token = $request->user()->createToken('wheather');
-    return ['token' => $token->plainTextToken];
-});
+Route::post('/tokens/create', [App\Http\Controllers\Auth\AuthController::class, 'createToken']);
 
 Route::get('auth-check', [App\Http\Controllers\Auth\AuthController::class, 'authCheck']);
 

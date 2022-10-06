@@ -20,7 +20,7 @@ class WheatherService
 
         $getWeatherServiceUserLocationUrl = $wheatherServiceUrl.$appendedParameters;
 
-        return Cache::get('user_wheather_data', static function () use ($getWeatherServiceUserLocationUrl) {
+        return Cache::get("user_wheather_data-{$userLocation}", static function () use ($getWeatherServiceUserLocationUrl) {
             return Http::get($getWeatherServiceUserLocationUrl)->object();
         });
     }
